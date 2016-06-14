@@ -1,27 +1,18 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
-
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <table class="table  table-bordered">
-      <tr>
-        <th>name</th>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <th>email</th>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <th>profile</th>
-        <td><%= @user.profile %></td>
-      </tr>
-      <tr>
-        <th>address</th>
-        <td><%= @user.address %></td>
-      </tr>
-    </table>
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
   </div>
 </div>
