@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   def show # 追加
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
-
   end
   
   def new
@@ -35,23 +34,17 @@ class UsersController < ApplicationController
   end
   
   before_action :current_user?, only: [:edit, :update]
+
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.following_users
+  end
   
-
-  # 他のユーザーをフォローする
-  def follow(other_user)
-    following_relationships.find_or_create_by(followed_id: other_user.id)
-  end
-
-  # フォローしているユーザーをアンフォローする
-  def unfollow(other_user)
-    following_relationship = following_relationships.find_by(followed_id: other_user.id)
-    following_relationship.destroy if following_relationship
-  end
-
-  # あるユーザーをフォローしているかどうか？
-  def following?(other_user)
-    following_users.include?(other_user)
-  end
+  #def followers
+  #  @user = User.find(params[:id])
+  #  @followers = following_users.all.find(params[:id])
+  #  redirect_to  'show_followers'
+  #end
 
   private
   def user_params
@@ -63,5 +56,4 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-  
 end
