@@ -185,3 +185,14 @@ span.picture {
     border: 0;
   }
 }
+
+.cards {
+  overflow: hidden;
+  .gravatar {
+    float: none;
+    margin: 0;
+  }
+  li {
+    list-style: none;
+  }
+}
