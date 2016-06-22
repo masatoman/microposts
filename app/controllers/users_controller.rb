@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :current_user?, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update, :current_user?]
+  
   def show # 追加
     @microposts = @user.microposts.order(created_at: :desc)
   end
