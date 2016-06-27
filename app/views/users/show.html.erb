@@ -4,9 +4,12 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+        <%= @user.avatar %>
       </h1>
+      <div>
         <%= link_to "followers", user_followers_path(@user), { :class => "btn btn-primary"} %>
         <%= link_to "followings", user_followings_path(@user), { :class => "btn btn-primary"} %>
+      </div>
     </section>
   </aside>
   <div class="col-md-8">
@@ -16,6 +19,7 @@
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
+      <%= paginate @microposts %>
     <% end %>
   </div>
 </div>
